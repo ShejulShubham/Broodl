@@ -1,5 +1,5 @@
 "use client";
-import { Fugaz_One, Nanum_Myeongjo } from "next/font/google";
+import { Fugaz_One } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import Calender from "./Calender";
 import { useAuth } from "@/context/AuthContext";
@@ -108,11 +108,14 @@ export default function Dashboard() {
       <div className="grid grid-cols-3 bg-indigo-50 text-indigo-500 p-4 gap-4 rounded-lg">
         {Object.keys(statuses).map((status, statusIndex) => {
           return (
-            <div key={statusIndex} className=" flex flex-col gap-1 sm:gap-2">
-              <p className="font-medium capitalize text-xs sm:text-sm truncate">
+            <div
+              key={statusIndex}
+              className=" flex flex-col items-center gap-1 sm:gap-2"
+            >
+              <p className="font-normal text-lg capitalize sm:text-sm truncate">
                 {status.replaceAll("_", " ")}
               </p>
-              <p className={"text-base sm:text-lg truncate" + fugaz.className}>
+              <p className={"text-xl sm:text-lg truncate " + fugaz.className}>
                 {statuses[status]}
                 {status === "num_days" ? " 🔥" : ""}
               </p>
@@ -143,7 +146,7 @@ export default function Dashboard() {
               <p className="text-4xl sm:text-5xl md:text-6xl">{moods[mood]}</p>
               <p
                 className={
-                  "text-indigo-500 text-xs sm:text-sm md:text-base" +
+                  "text-indigo-500 text-xs sm:text-sm md:text-base " +
                   fugaz.className
                 }
               >

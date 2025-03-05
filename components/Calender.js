@@ -84,7 +84,7 @@ export default function Calender(props) {
           onClick={() => {
             handleIncrementMonth(-1);
           }}
-          className="mr-auto text-indigo-400 text-lg sm:text-xl duration-200 hover:opacity-60"
+          className="mr-auto text-indigo-600 text-lg sm:text-xl duration-200 hover:opacity-60"
         >
           <i className="fa-solid fa-circle-chevron-left"></i>
         </button>
@@ -100,7 +100,7 @@ export default function Calender(props) {
           onClick={() => {
             handleIncrementMonth(+1);
           }}
-          className="ml-auto text-indigo-400 text-lg sm:text-xl duration-200 hover:opacity-60"
+          className="ml-auto text-indigo-600 text-lg sm:text-xl duration-200 hover:opacity-60"
         >
           <i className="fa-solid fa-circle-chevron-right"></i>
         </button>
@@ -120,7 +120,7 @@ export default function Calender(props) {
                     ? false
                     : true;
 
-                let isToday = dayIndex === now.getDate();
+                let isToday = dayIndex === now.getDate() && selectedMonth == now.getMonth();
 
                 if (!dayDisplay) {
                   return <div className="bg-white" key={dayOfWeekIndex} />;

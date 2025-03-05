@@ -10,6 +10,7 @@ export default function Head() {
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
       />
+      <link rel="icon" href="/favicon.ico" sizes="any" />
     </head>
   );
 }

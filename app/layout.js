@@ -39,6 +39,13 @@ export default function RootLayout({ children }) {
   const footer = (
     <footer className="p-4 sm:p-8 grid place-items-center">
       <p className={"text-indigo-500 " + fugaz.className}>Created With 💛</p>
+      <p className={"text-indigo-400 p-4 " + fugaz.className}>
+        <Link
+          target="_blank"
+          href={"https://github.com/ShejulShubham/Broodl.git"}
+        >Github Link <i className="fa-brands fa-github"></i>
+        </Link>
+      </p>
     </footer>
   );
 

@@ -1,4 +1,5 @@
 import Dashboard from "@/components/Dashboard";
+import Loading from "@/components/Loading";
 import Login from "@/components/Login";
 import Main from "@/components/Main";
 
@@ -7,13 +8,22 @@ export const metadata = {
 };
 
 export default function DashboardPage() {
-  const isAuthenticated = true;
+  // const { currentUser, loading } = useAuth();
 
-  let children = <Login />;
+  // let children = <Login />;
 
-  if (isAuthenticated) {
-    children = <Dashboard />;
-  }
+  // if (loading) {
+  //   children = (
+  //     <Loading/>
+  //   )
 
-  return <Main>{children}</Main>;
+  // if (currentUser) {
+  //   children = <Dashboard />;
+  // }
+
+  return (
+    <Main>
+      <Dashboard />
+    </Main>
+  );
 }

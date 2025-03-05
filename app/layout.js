@@ -1,6 +1,9 @@
 import { Fugaz_One, Geist, Geist_Mono, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { AuthProvider } from "@/context/AuthContext";
+import Head from "./head";
+import Logout from "@/components/Logout";
 
 const fugaz = Fugaz_One({ subsets: ["latin"], weight: "400" });
 
@@ -29,9 +32,7 @@ export default function RootLayout({ children }) {
           Broodl
         </h1>
       </Link>
-      <div className="flex items-center justify-between">
-        PLACEHOLDER CTA || STAT
-      </div>
+      <Logout />
     </header>
   );
 
@@ -43,14 +44,17 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body
-        className={`w-full max-width-[1000px] mx-auto text-sm sm:text-base 
+      <Head />
+      <AuthProvider>
+        <body
+          className={`w-full max-width-[1000px] mx-auto text-sm sm:text-base 
           min-h-screen flex flex-col text-slate-800 ${openSans.className}`}
-      >
-        {header}
-        {children}
-        {footer}
-      </body>
+        >
+          {header}
+          {children}
+          {footer}
+        </body>
+      </AuthProvider>
     </html>
   );
 }

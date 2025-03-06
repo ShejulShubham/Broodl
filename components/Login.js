@@ -24,10 +24,8 @@ export default function Login() {
 
     try {
       if (isRegister) {
-        console.log("Signing Up a new user");
         await signup(email, password);
       } else {
-        console.log("Logging in existing user");
         await login(email, password);
       }
     } catch (error) {

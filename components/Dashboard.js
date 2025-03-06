@@ -107,16 +107,19 @@ export default function Dashboard() {
     <div className="flex flex-col flex-1 gap-8 sm:gap-10 md:gap-16">
       <div className="grid grid-cols-3 bg-indigo-50 text-indigo-500 p-4 gap-4 rounded-lg">
         {Object.keys(statuses).map((status, statusIndex) => {
+          const stat = statuses[status];
+          const roundedStat = Math.round(stat*100) / 100;
+
           return (
             <div
               key={statusIndex}
               className=" flex flex-col items-center gap-1 sm:gap-2"
             >
-              <p className="font-normal text-lg capitalize sm:text-sm truncate">
+              <p className="font-normal text-sm capitalize sm:text-sm truncate">
                 {status.replaceAll("_", " ")}
               </p>
               <p className={"text-xl sm:text-lg truncate " + fugaz.className}>
-                {statuses[status]}
+                {status == "average_mood" ? roundedStat : stat}
                 {status === "num_days" ? " 🔥" : ""}
               </p>
             </div>

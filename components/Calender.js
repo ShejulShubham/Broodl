@@ -31,6 +31,20 @@ const dayList = [
   "Saturday",
 ];
 
+const calenderDayList = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+const dayColor = {
+  SUN: "#4833ff",
+  MON: "#b8adff",
+  TUE: "#9285ff",
+  WED: "#9285ff",
+  THU: "#7766ff",
+  FRI: "#7766ff",
+  SAT: "#4833ff",
+  // :"#dcd6ff",
+  // :"#10097a",
+};
+
 export default function Calender(props) {
   const { demo, completeData, handleSetMood } = props;
   const now = new Date();
@@ -107,6 +121,22 @@ export default function Calender(props) {
       </div>
 
       <div className="flex flex-col overflow-hidden gap-1 py-4 sm:py-6 md:py-10">
+        <div className="grid grid-cols-7 gap-1" >
+          {calenderDayList.map((day, dayIndex) => {
+            const calenderColor = dayColor[day];
+            return (
+              <div
+                className={
+                  "text-xs sm:text-sm border border-solid p-2 flex items-center justify-center gap-2 rounded-lg border-indigo-400 text-white font-bold"
+                }
+                key={dayIndex}
+                style={{ background: "#4833ff" }}
+              >
+                {day}
+              </div>
+            );
+          })}
+        </div>
         {[...Array(numRows).keys()].map((row, rowIndex) => {
           return (
             <div key={rowIndex} className="grid grid-cols-7 gap-1">
@@ -120,7 +150,8 @@ export default function Calender(props) {
                     ? false
                     : true;
 
-                let isToday = dayIndex === now.getDate() && selectedMonth == now.getMonth();
+                let isToday =
+                  dayIndex === now.getDate() && selectedMonth == now.getMonth();
 
                 if (!dayDisplay) {
                   return <div className="bg-white" key={dayOfWeekIndex} />;

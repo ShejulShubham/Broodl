@@ -81,7 +81,7 @@ export default function Dashboard() {
 
   const moods = {
     "&*%$#@!": "😭",
-    Sad: "🥲",
+    Sad: "😢",
     Existing: "😶",
     Good: "😄",
     Elated: "😍",
@@ -108,7 +108,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-3 bg-indigo-50 text-indigo-500 p-4 gap-4 rounded-lg">
         {Object.keys(statuses).map((status, statusIndex) => {
           const stat = statuses[status];
-          const roundedStat = Math.round(stat*100) / 100;
+          const roundedStat = Math.round(stat * 100) / 100;
 
           return (
             <div
@@ -119,7 +119,11 @@ export default function Dashboard() {
                 {status.replaceAll("_", " ")}
               </p>
               <p className={"text-xl sm:text-lg truncate " + fugaz.className}>
-                {status == "average_mood" ? roundedStat : stat}
+                {status == "average_mood"
+                  ? roundedStat
+                    ? roundedStat
+                    : "get started to see"
+                  : stat}
                 {status === "num_days" ? " 🔥" : ""}
               </p>
             </div>

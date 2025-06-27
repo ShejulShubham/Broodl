@@ -41,6 +41,12 @@ export default function Login() {
         {isRegister ? "Register" : "Log in"}
       </h3>
       <p>You&#39;re one step away!</p>
+      <div className="message">
+        <p>
+          Create your free account or Login with <strong>test@gmail.com</strong>{" "}
+          and password as <strong>'password'</strong>
+        </p>
+      </div>
       <input
         value={email}
         onChange={(e) => {

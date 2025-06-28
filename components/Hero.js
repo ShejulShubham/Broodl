@@ -8,6 +8,7 @@ import CallToAction from "./CallToAction";
 const fugaz = Fugaz_One({ weight: "400", subsets: ["latin"] });
 
 export default function Hero() {
+
   return (
     <div className="py-4 md:py-10 flex flex-col gap-8 sm:gap-10">
       <h1

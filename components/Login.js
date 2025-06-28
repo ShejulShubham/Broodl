@@ -3,6 +3,13 @@ import { Fugaz_One } from "next/font/google";
 import React, { useState } from "react";
 import Button from "./Button";
 import { useAuth } from "@/context/AuthContext";
+import {
+  checkEmailError,
+  isValidEmail,
+  checkPasswordError,
+  isValidPassword,
+} from "@/app/utils";
+import { toastInfo, toastError, toastSuccess } from "@/app/toast_utils";
 
 const fugaz = Fugaz_One({ subsets: ["latin"], weight: "400" });
 
@@ -14,22 +21,46 @@ export default function Login() {
 
   const { signup, login } = useAuth();
 
+  function defaultDetails() {
+    toastInfo("Create your free account or Login with default account");
+  }
+
   async function handleSubmit() {
     // add regex to email validation
-    if (!email || !password || password.length < 6) {
+    if (authenticating) {
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      let errorMessage = checkEmailError(email);
+      toastError(errorMessage);
+      return;
+    } else if (!isValidPassword(password)) {
+      let errorMessage = checkPasswordError(password);
+      toastError(errorMessage);
       return;
     }
 
     setAuthenticating(true);
 
     try {
+      let message = "";
       if (isRegister) {
         await signup(email, password);
+        message = "Signed Up";
       } else {
         await login(email, password);
+        message = "Logged In";
       }
+
+      toastSuccess(`${message} successfully!`);
     } catch (error) {
       console.log(error.message);
+      if (error.message == "Firebase: Error (auth/invalid-credential).") {
+        toastError("Please Enter Valid Credentials");
+      } else {
+        toastError("Please try again after some time!");
+      }
     } finally {
       setAuthenticating(false);
     }
@@ -41,12 +72,12 @@ export default function Login() {
         {isRegister ? "Register" : "Log in"}
       </h3>
       <p>You&#39;re one step away!</p>
-      <div className="message">
+      {/* <div className="message">
         <p>
           Create your free account or Login with <strong>test@gmail.com</strong>{" "}
           and password as <strong>'password'</strong>
         </p>
-      </div>
+      </div> */}
       <input
         value={email}
         onChange={(e) => {
@@ -81,6 +112,17 @@ export default function Login() {
           className="text-indigo-600"
         >
           {isRegister ? " Sign in" : " Sign Up"}
+        </button>
+      </p>
+      <p className="text-center">
+        {"To get default account details "}
+        <button
+          onClick={() => {
+            defaultDetails();
+          }}
+          className="text-indigo-600"
+        >
+          {" Click here"}
         </button>
       </p>
     </div>

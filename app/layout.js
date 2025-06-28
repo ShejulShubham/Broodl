@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AuthProvider } from "@/context/AuthContext";
 import Head from "./head";
 import Logout from "@/components/Logout";
+import Toaster from "@/components/Toaster";
 
 const fugaz = Fugaz_One({ subsets: ["latin"], weight: "400" });
 
@@ -43,7 +44,8 @@ export default function RootLayout({ children }) {
         <Link
           target="_blank"
           href={"https://github.com/ShejulShubham/Broodl.git"}
-        >Github Link <i className="fa-brands fa-github"></i>
+        >
+          Github Link <i className="fa-brands fa-github"></i>
         </Link>
       </p>
     </footer>
@@ -57,6 +59,7 @@ export default function RootLayout({ children }) {
           className={`w-full max-width-[1000px] mx-auto text-sm sm:text-base 
           min-h-screen flex flex-col text-slate-800 ${openSans.className}`}
         >
+          <Toaster />
           {header}
           {children}
           {footer}
